@@ -1,0 +1,38 @@
+name: Keep ngrok Alive
+
+on:
+  schedule:
+    - cron: "*/1 * * * *" # Every 1 minute
+  workflow_dispatch:  # Trigger manually if needed
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Checkout your code
+
+      - name: Install ngrok
+        run: |
+          curl -s https://ngrok.com/download | bash
+          sudo mv ngrok /usr/local/bin  # Move ngrok to a location in your PATH
+
+      - name: Start ngrok tunnel
+        run: |
+          nohup ngrok tcp 25565 &  # Change the port if needed (e.g., 25565 for Minecraft)
+          sleep 5  # Wait for ngrok to start
+
+      - name: Get ngrok public URL
+        run: |
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          echo "Ngrok URL: $NGROK_URL"
+
+      - name: Send Ping to Ngrok Tunnel
+        run: |
+          # Replace with your specific tunnel URL and port
+          curl -s $NGROK_URL | head -n 1
+
+      - name: Additional Actions
+        run: |
+          echo "Add other actions to build, test, and deploy your project."
