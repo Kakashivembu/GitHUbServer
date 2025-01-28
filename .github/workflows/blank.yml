@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Send Ping to Codespace
         run: |
-          curl -s --head again-thinks.joinmc.link | head -n 1
+          curl -s --reference-computational.gl.joinmc.link | head -n 1
 
       - name: Run a multi-line script
         run: |
