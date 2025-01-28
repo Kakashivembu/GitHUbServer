@@ -23,7 +23,7 @@ jobs:
 
       - name: Authenticate ngrok
         run: |
-          ngrok authtoken ${{ 2grlDVcdqBfrcI2JoN4a2hRAFA0_yPH5Rjhc5Zf2KhRu6HTY }}  # Use your secret token
+          ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}  # Use your secret token
 
       - name: Check ngrok installation
         run: ngrok version  # Verify ngrok version
