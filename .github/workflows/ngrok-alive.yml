@@ -2,7 +2,7 @@ name: Keep ngrok Alive
 
 on:
   schedule:
-    - cron: "*/1 * * * *" # Every 1 minute
+    - cron: "*/1 * * * *"  # Every 1 minute
   workflow_dispatch:  # Trigger manually if needed
 
 jobs:
@@ -15,9 +15,13 @@ jobs:
 
       - name: Install ngrok
         run: |
-         sudo tar -xvzf ~/Downloads/ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
-         ngrok config add-authtoken 2grlDVcdqBfrcI2JoN4a2hRAFA0_yPH5Rjhc5Zf2KhRu6HTY
-         sudo mv ngrok /usr/local/bin  # Move ngrok to a location in your PATH
+          curl -s https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o ngrok.zip
+          unzip ngrok.zip
+          sudo mv ngrok /usr/local/bin/
+          rm ngrok.zip
+
+      - name: Check ngrok installation
+        run: ngrok version
 
       - name: Start ngrok tunnel
         run: |
