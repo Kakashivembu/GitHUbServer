@@ -13,15 +13,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2  # Checkout your code
 
-      - name: Install ngrok (latest version)
+      - name: Install the latest ngrok version
         run: |
-          curl -s https://ngrok.com/download | bash
+          # Download the latest ngrok version
+          curl -s https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o ngrok.zip
+          unzip ngrok.zip
           sudo mv ngrok /usr/local/bin/
-          ngrok version  # Verify ngrok installation
+          rm ngrok.zip
 
       - name: Authenticate ngrok
         run: |
           ngrok authtoken ${{ 2grlDVcdqBfrcI2JoN4a2hRAFA0_yPH5Rjhc5Zf2KhRu6HTY }}  # Use your secret token
+
+      - name: Check ngrok installation
+        run: ngrok version  # Verify ngrok version
 
       - name: Start ngrok tunnel
         run: |
