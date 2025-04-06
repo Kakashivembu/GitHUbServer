@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Send Ping to Codespace
         run: |
-          curl -s --tcp://0.tcp.in.ngrok.io:11903 | head -n 1
+          curl -s --K_VEMBU.aternos.me:33176 | head -n 1
 
       - name: Run a multi-line script
         run: |
