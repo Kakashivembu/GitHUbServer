@@ -2,7 +2,7 @@ name: Keep Codespace Alive
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # Every 5 minutes
+    - cron: "*/1 * * * *" # Every 5 minutes
   workflow_dispatch:
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Send Ping to Codespace
         run: |
-          curl -s --reference-computational.gl.joinmc.link | head -n 1
+          curl -s --K_VEMBU.aternos.me:33176 | head -n 1
 
       - name: Run a multi-line script
         run: |
