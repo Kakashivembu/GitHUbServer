@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Send Ping to Codespace
         run: |
-          curl -s --K_VEMBU.aternos.me:33176 | head -n 1
+          curl -s --https://humble-memory-6jrjr9q9rg43rv59-8000.app.github.dev/ | head -n 1
 
       - name: Run a multi-line script
         run: |
